@@ -1,4 +1,5 @@
 @charset "UTF-8";
+/*imported similar font to jepordy so people can see it as well*/
 @import url('https://fonts.googleapis.com/css?family=Anonymous+Pro:400,700&display=swap');
 
 body, html {
@@ -6,6 +7,8 @@ body, html {
     margin: 0%;
     font-family:  'Anonymous Pro';
 }
+
+/*Here I added a color gradinat from blue light purple to darker purple as the background*/
 body {
 	background: rgb(69,110,224);
     background: linear-gradient(90deg, rgba(69,110,224,1) 0%, rgba(160,86,172,1) 50%, rgba(98,7,167,1) 100%);
@@ -80,6 +83,7 @@ p {
     line-height: 1.5em;
 }
 
+/*This is the design of the button to generate*/
 .cta {
     display: block;
     color: white;
@@ -91,4 +95,86 @@ p {
     font-weight: bold;
     border-radius: 4px;
     margin: 2em 0;
+}
+
+/* This code below has to do with altering the screen once it is 
+768 px or larger. This is because I desgined with mobile in mind first
+now I have to adjust to make a larger webpage. */
+
+@media only screen and (min-width: 768px) {
+
+    body {
+        display: grid;
+        grid-template-columns: 20% auto;
+        padding:2em
+    }
+
+    img {
+        display: none;
+    }
+    
+    aside {
+        background: #DCE1F6;
+        grid-template-columns: auto;
+        grid-template-rows: 20% auto;
+        padding: 0;
+    }
+
+    main {
+        padding: 4em;
+        background-size: 40%;
+    }
+
+    /* made a circular spot to add a photo and ajusted it to fit in it well. */
+    #pic {
+        border-radius: 50%;
+        background: white url('../images/jepSymbol.jepg.jpg') center no-repeat;
+        background-size: 110%;
+        width: 60px;
+        height: 60px;
+        margin: 2em auto 1em auto;
+    }
+    
+    figcaption {
+        text-align: center;
+        color: black;
+    }   
+
+    /*We are adding the options to the biger screen now, however there is 
+    an issue if the user clicks the menu button on a small screen then
+    they can't get rid of it so we fixed that with relative postion  to 
+    the list*/
+    ul {
+        display: block;
+        margin-top: 2em;
+        position: relative !important;
+        background: none !important;
+        width: 100% !important;
+    }
+
+    /*Everything below are small design changes to make large screen not look so empty and 
+    small design factors like changes to colors and sizes of boxes and hoever over changing color */ 
+
+    ul li a:hover {
+        background-color: white;
+    }
+
+    nav {
+        background: none;
+    }
+
+    .cta {
+        display: inline-block;
+        font-size: 1.3em;
+        padding: .8em 3em;
+    }
+
+    h1 {
+        font-size: 3em;
+        margin-top: 2em;
+    }
+
+    p {
+        font-size: 1.5em;
+    }
 }

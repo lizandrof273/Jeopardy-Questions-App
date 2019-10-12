@@ -4,6 +4,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<!--this has the name in the tab and below I like my css doc-->
 		<title>Jepordy</title>
 		<link rel="stylesheet" href="CSS/main.css">
 	</head>
@@ -11,9 +12,13 @@
 	<body>
 		<aside>
 			<figure>
+				<!--added this for large version where I will add a 
+				photo but in the smaller one I will not-->
 				<div id="pic"></div>
+
 				<figcaption>Jepordy!</figcaption>
 			</figure>
+			<!--Here I add a menu button and the list that will apear with it-->
 			<img src="images/menu.svg">
 			<nav>
 				<ul>
@@ -25,11 +30,13 @@
 		</aside>
 
 		<main>
+			<!--Here there is the text the cite provides as directions along with genrate button-->
 			<h1>Generate your Question</h1>
 			<p>Pick your prefrences in the menu and we will pull a question that fits!</p>
 			
 			<a href="#" class="cta">Generate Question</a>
 		</main>
+		<!--Here is a little javascript that when the hamburger menu button is clicked it will open the side list-->
 		<script>
 				(function() {
 					var menu = document.querySelector('ul'),
