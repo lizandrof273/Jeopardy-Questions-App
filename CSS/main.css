@@ -97,6 +97,12 @@ p {
     margin: 2em 0;
 }
 
+.box select {
+    background: blueviolet;
+    color: white;
+    position: padding 10px;
+}
+
 /* This code below has to do with altering the screen once it is 
 768 px or larger. This is because I desgined with mobile in mind first
 now I have to adjust to make a larger webpage. */

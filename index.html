@@ -34,6 +34,24 @@
 			<h1>Generate your Question</h1>
 			<p>Pick your prefrences in the menu and we will pull a question that fits!</p>
 			
+			<!--Here I am making a -->
+			<div class="box">
+				<p1>Choose the difficulty:</p1>
+				<select id="selectbox" onchange="changeDiff();">
+					<option value="0"> Random difficulty</option>
+					<option value="100">Difficulty 100</option>
+					<option value="200">Difficulty 200</option>
+					<option value="300">Difficulty 300</option>
+					<option value="400">Difficulty 400</option>
+					<option value="500">Difficulty 500</option>
+				</select>
+			</div>
+			<br>
+			<form id="form1">
+				Search by category:<input name="name" type="type" size="20">
+			</form>
+			<button onclick="changeCat()">Submit Category</button>
+			<br>
 			<a href="#" class="cta">Generate Question</a>
 		</main>
 		<!--Here is a little javascript that when the hamburger menu button is clicked it will open the side list-->
@@ -49,5 +67,7 @@
 				})();
 				
 			</script>
+		<!-- referencing js file -->
+		<script src="retrieve.js"></script>
 	</body>
 </html>
