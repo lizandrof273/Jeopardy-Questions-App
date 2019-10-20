@@ -5,8 +5,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<!--this has the name in the tab and below I like my css doc-->
+		
 		<title>jeopardy Generator</title>
 		<link rel="stylesheet" href="css/main.css">
+		
 	</head>
 
 	<body>
@@ -31,6 +33,13 @@
 
 		<main>
 			<!--Here there is the text the cite provides as directions along with genrate button-->
+			<div class="question">
+				<div id="insertQuestionTitle"></div>
+				<div id="insertQuestion"></div>
+				<div id="insertAnswerTitle"></div>
+				<div id="insertAnswer"></div>
+				<div id="note"></div>
+			</div>
 			<h1>Generate your Question</h1>
 			<p>Pick your prefrences in the menu and we will pull a question that fits!</p>
 			
@@ -52,6 +61,9 @@
 			</form>
 			<button onclick="changeCat()">Submit Category</button>
 			<br>
+			<!--A lot this code below is just drop
+			down menu for the dates you can pick
+			to select between-->
 			<p1>Filter by date:</p1>
 			<br>
 			<p1>Results only after this date</p1>
@@ -259,7 +271,9 @@
 				</select>
 			</div>
 			<br>
+			
 			<button onclick="getQuestion()" class="cta">Generate Question</button>
+			
 		</main>
 		<!--Here is a little javascript that when the hamburger menu button is clicked it will open the side list-->
 		<script>

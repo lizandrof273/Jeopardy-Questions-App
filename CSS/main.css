@@ -100,7 +100,18 @@ p {
 .box select {
     background: blueviolet;
     color: white;
+    
+}
+
+.question {
+    font-family: verdana;
+    font-size: 14px;
+    border: 3px solid blueviolet;
+    border-radius: 6px;
+    color: purple;
+    margin: 2em;
     position: padding 10px;
+    text-align: center;
 }
 
 /* This code below has to do with altering the screen once it is 

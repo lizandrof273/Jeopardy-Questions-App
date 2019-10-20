@@ -6,6 +6,7 @@ var category = "";
 var yearBefore = 0, monthBefore = 0, dayBefore = 0, 
 yearAfter = 0, monthAfter = 0, dayAfter = 0;
 var question = "";
+var answer = "";
 //getting difficultly user selected
 function changeDiff() {
     questionDiff = document.getElementById("selectbox").value;
@@ -52,14 +53,24 @@ function getQuestion() {
     })
     .then(function(data){
         var randIndex = chooseIndex(data.length)
-        question = data[randIndex].answer
+        question = data[randIndex].question
+        answer = data[randIndex].answer
         console.log(data[randIndex])
-        next()
+        outputQ()
     })
     
 }
-function next() {
+
+function outputQ() {
+    document.getElementById("insertQuestionTitle").innerHTML = "Your Question:";
+    document.getElementById("insertQuestion").innerHTML = question;
+    document.getElementById("insertAnswerTitle").innerHTML = "Answer:";
+    document.getElementById("insertAnswer").innerHTML = answer;
+    document.getElementById("note").innerHTML = "Some data may be missing from API";
+    
     console.log(question)
+    console.log(answer)
+    
 }
 
 function chooseIndex(choices) {
