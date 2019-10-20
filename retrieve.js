@@ -5,6 +5,7 @@ var questionDiff = 0;
 var category = "";
 var yearBefore = 0, monthBefore = 0, dayBefore = 0, 
 yearAfter = 0, monthAfter = 0, dayAfter = 0;
+var question = "";
 //getting difficultly user selected
 function changeDiff() {
     questionDiff = document.getElementById("selectbox").value;
@@ -45,24 +46,23 @@ function changeDayAfter() {
 }
 
 function getQuestion() {
-    var stuff = fetch("http://jservice.io/api/clues")
-    .then(res => {
-          return res.json();
-    });
-    console.log(stuff);
+    fetch("http://jservice.io/api/clues")
+    .then(function(resp) {
+        return resp.json();
+    })
+    .then(function(data){
+        var randIndex = chooseIndex(data.length)
+        question = data[randIndex].answer
+        console.log(data[randIndex])
+        next()
+    })
+    
+}
+function next() {
+    console.log(question)
 }
 
-/*const choices = Array.from(document.getElementsByClassName("choice-text"));
-
-let currentQuestion = {};
-let acceptingAnswers = true;
-console.log(choices);*/
-/*let storeQuestion = [];
-fetch("/api/clues")
-    .then(res => {
-        console.log(res);
-        return Response.json();
-    }).then(loadedQuestions => {
-        console.log(loadedQuestions);
-    });
-*/
+function chooseIndex(choices) {
+    var index = Math.floor(Math.random() * choices);
+    return index;
+  }
