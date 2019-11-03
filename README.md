@@ -2,7 +2,7 @@
 
 Jeopardy Generator is a web app that is both friendly to large screens and mobile devices. It allows a user to search the large catalog of Jeopardy questions with some ways to filter through the questions. These filters include difficulty, time frame, and category.
 
-Link to Website ().
+Link to Website (https://jeopardy-genn.herokuapp.com/index.html).
 
 The app utilizes [jservice REST API](http://jservice.io).
 
