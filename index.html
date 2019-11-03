@@ -46,7 +46,7 @@
 			<!--Here I am making a drop down for options for difficulty-->
 			<div class="box">
 				<p1>Choose the difficulty:</p1>
-				<select id="selectbox" onchange="changeDiff();">
+				<select id="selectDiff" onchange="changeDiff();">
 					<option value="0"> Random difficulty</option>
 					<option value="100">Difficulty 100</option>
 					<option value="200">Difficulty 200</option>
@@ -56,10 +56,27 @@
 				</select>
 			</div>
 			<br>
-			<form id="form1">
-				Search by category:<input name="name" type="type" size="20">
-			</form>
-			<button onclick="changeCat()">Submit Category</button>
+			<!--Here we are giving options for the category and the
+			value attached to each one is the category id-->
+			<div class="box">
+				<p1>Choose category:</p1>
+				<select id="selectCat" onchange="changeCat();">
+					<option value="0">Random category</option>
+					<option value="1">Politics</option>
+					<option value="25">Science</option>
+					<option value="21">Animals</option>
+					<option value="11">Trivia</option>
+					<option value="4">Movies</option>
+					<option value="24">Movie Trivia</option>
+					<option value="17">US States</option>
+					<option value="7">US cities</option>
+					<option value="13">Inventions</option>
+					<option value="8">Time</option>
+					<option value="16">Cars</option>
+					<option value="10">Children's literature</option>
+					<option value="3">Odd jobs</option>	
+				</select>
+			</div>
 			<br>
 			<!--A lot this code below is just drop
 			down menu for the dates you can pick
