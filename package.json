@@ -4,7 +4,8 @@
   "description": "Jeopardy Generator is a web app that is both friendly to large screens and mobile devices. It allows a user to search the large catalog of Jeopardy questions with some ways to filter through the questions. These filters include difficulty, time frame, and category.",
   "main": "retrieve.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node retrieve.js"
   },
   "repository": {
     "type": "git",
