@@ -4,69 +4,49 @@
 
 Jeopardy Generator is a web app that is both friendky to large screens and mobile devices. It allows a user to search the large catelog of Jeopardy questions with some ways to filter through the questions. These filters include difficulty, time frame, and category.
 
+Link to Website ().
+
 The app utilizes [jservice REST API](http://jservice.io).
 
 ## User Stories
 
+
+* [x]	User can **search by difficulty**
+* [x]	User can **search by category**
+* [x]	User can **search before a date**
+* [x]	User can **search after a date**
+* [x]	User can **search by a specific date**
+* [x]	User can **search by all above together**
 * [x]	User can search for random questions when they do not input anything.
-* [x]	User can **view tweets from their home timeline**
-  * [x] User is displayed the username, name, and body for each tweet
-  * [x] User is displayed the [relative timestamp](https://gist.github.com/nesquena/f786232f5ef72f6e10a7) for each tweet "8m", "7h"
-* [x] User can **compose and post a new tweet**
-  * [x] User can click a “Compose” icon in the Action Bar on the top right
-  * [x] User can then enter a new tweet and post this to twitter
-  * [x] User is taken back to home timeline with **new tweet visible** in timeline
-  * [x] Newly created tweet should be manually inserted into the timeline and not rely on a full refresh
+* [x] User is displayed question and answer
+* [x] User is displayed lists to select prefrences
+* [x] User can switch between two different layouts depending on the size
+* [x] User can switch between tabs in both layouts
+* [x] User can learn about Jeopardy and the Generator
 
-The following **stretch** features are implemented:
+Possible duture features:
 
-* [x] User can **see a counter with total number of characters left for tweet** on compose tweet page
-* [ ] User can **pull down to refresh tweets timeline**
-* [ ] User is using **"Twitter branded" colors and styles**
-* [x] User sees an **indeterminate progress indicator** when any background or network task is happening
-* [ ] User can **select "reply" from detail view to respond to a tweet**
-  * [ ] User that wrote the original tweet is **automatically "@" replied in compose**
-* [ ] User can tap a tweet to **open a detailed tweet view**
-  * [ ] User can **take favorite (and unfavorite) or reweet** actions on a tweet
-* [ ] User can **see embedded image media within a tweet** on list or detail view.
+* [ ] Look like a game board
+* [ ] Make playable game
+* [ ] Keep users favoritaes on a tab
+* [ ] Expand the categories
 
-The following **bonus** features are implemented:
-
-* [ ] User can view more tweets as they scroll with infinite pagination
-* [ ] Compose tweet functionality is build using modal overlay
-* [ ] User can **click a link within a tweet body** on tweet details view. The click will launch the web browser with relevant page opened.
-* [ ] Use Parcelable instead of Serializable using the popular [Parceler library](http://guides.codepath.org/android/Using-Parceler).
-* [ ] Replace all icon drawables and other static image assets with [vector drawables](http://guides.codepath.org/android/Drawables#vector-drawables) where appropriate.
-* [ ] User can view following / followers list through any profile they view.
-* [ ] Use the popular ButterKnife annotation library to reduce view boilerplate.
-* [ ] On the Twitter timeline, leverage the [CoordinatorLayout](http://guides.codepath.org/android/Handling-Scrolls-with-CoordinatorLayout#responding-to-scroll-events) to apply scrolling behavior that [hides / shows the toolbar](http://guides.codepath.org/android/Using-the-App-ToolBar#reacting-to-scroll).
-* [ ] User can **open the twitter app offline and see last loaded tweets**. Persisted in SQLite tweets are refreshed on every application launch. While "live data" is displayed when app can get it from Twitter API, it is also saved for use in offline mode.
-
-
-The following **additional** features are implemented:
-
-* [ ] List anything else that you can get done to improve the app functionality!
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://github.com/lizandrof273/TwitterApp/blob/master/simpleTweetVid.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://github.com/lizandrof273/Jepordy-Questions-App/blob/master/jeopardyGen.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
-
-## Open-source libraries used
-
-- [Android Async HTTP](https://github.com/loopj/android-async-http) - Simple asynchronous HTTP requests with JSON parsing
-- [Glide](https://github.com/bumptech/glide) - Image loading and caching library for Android
+This web application was fun to build and a great expirnece. I learned a lot becuase I had not done both the front end and backend on a web application like this. I enjoyed building how it would look and how it changes forms from large to small. At first this web application was a little tricky to understand but was not to hard to understand. I faced many bugs but I have refined the application and now there are not any large bugs. There are to many bugs to discuess but one of them was when the user selects the airdate and unslects it would still add itself to it's search results. I was making sure there were no typos in my unordered list and where it was being called. However everything seemed to be fine because it was zero, meaning that it should have no prefrence. It turns out becuase I set the before and after dates to the single day. So when it would search with other results the before and after were not what the user wanted. I kept extra var with what they were before changing them and after getting the url I changed them back. This was overal a fun project to work on.
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright [2019] [Lizandro Franco]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
