@@ -1,0 +1,20 @@
+{
+  "name": "Jeopardy-Questions-App",
+  "version": "1.0.0",
+  "description": "Jeopardy Generator is a web app that is both friendly to large screens and mobile devices. It allows a user to search the large catalog of Jeopardy questions with some ways to filter through the questions. These filters include difficulty, time frame, and category.",
+  "main": "retrieve.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lizandrof273/Jepordy-Questions-App.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lizandrof273/Jepordy-Questions-App/issues"
+  },
+  "homepage": "https://github.com/lizandrof273/Jepordy-Questions-App#readme"
+}
