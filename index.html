@@ -24,9 +24,13 @@
 			<img src="images/menu.svg">
 			<nav>
 				<ul>
-					<li><a href="#">home</a></li>
-					<li><a href="about.html">about</a></li>
-					<li><a href="#">questions</a></li>
+					<!--You can click on these sidebars to explore different 
+					pages on the website. It starts at the home but 
+					there are about pages and later can be expanded to 
+					the ones user saves-->
+					<li><a href="index.html">Home</a></li>
+					<li><a href="about.html">About Jeopardy</a></li>
+					<li><a href="aboutGen.html">About Generator</a></li>
 				</ul>
 			</nav>
 		</aside>
@@ -43,7 +47,10 @@
 			<h1>Generate your Question</h1>
 			<p>Pick your prefrences in the menu and we will pull a question that fits!</p>
 			
-			<!--Here I am making a drop down for options for difficulty-->
+			<!--Here I am making a drop down for options for difficulty these have values that will be
+			updated in the javacript on change so
+			it is ready to display the question and
+			answer-->
 			<div class="box">
 				<p1>Choose the difficulty:</p1>
 				<select id="selectDiff" onchange="changeDiff();">
@@ -57,7 +64,10 @@
 			</div>
 			<br>
 			<!--Here we are giving options for the category and the
-			value attached to each one is the category id-->
+			value attached to each one is the category id, these 
+			have values that will be updated in the javacript on change so
+			it is ready to display the question and
+			answer-->
 			<div class="box">
 				<p1>Choose category:</p1>
 				<select id="selectCat" onchange="changeCat();">
@@ -80,7 +90,10 @@
 			<br>
 			<!--A lot this code below is just drop
 			down menu for the dates you can pick
-			to select between-->
+			to select between, these have values that will be
+			updated in the javacript on change so
+			it is ready to display the question and
+			answer-->
 			<p1>Filter by date:</p1>
 			<br>
 			<p1>Results only after this date</p1>
@@ -292,7 +305,9 @@
 			<button onclick="getQuestion()" class="cta">Generate Question</button>
 			
 		</main>
-		<!--Here is a little javascript that when the hamburger menu button is clicked it will open the side list-->
+		<!--Here is a little javascript that when the hamburger menu button is 
+			clicked it will open the side list where you can learn more 
+		about the website and jeopardy-->
 		<script>
 				(function() {
 					var menu = document.querySelector('ul'),

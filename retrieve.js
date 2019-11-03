@@ -1,12 +1,29 @@
-/*gets question and puts choices in an array*/
+/*These globals can be set by the user and if left like 
+that it will know that the user did not choose to filter by
+this*/
 var questionDiff = 0;
-var category = "";
+var category = 0;
 var yearBefore = 0, monthBefore = 0, dayBefore = 0, 
 yearAfter = 0, monthAfter = 0, dayAfter = 0;
+
+/**These two will later be filled with the data
+ from the url with user prefernce to eventualy 
+ displayed in the html*/
 var question = "";
 var answer = "";
+
+/**notFirst will be used to know if it was the first 
+thing the user added so I can add to the url correctly, 
+if there is something else in it then I know to and an 
+& instead of just start it. 
+This also tells me if left false that the user did not 
+select anything so then I will proceed to just use the
+random url*/
 var notFirst = false; 
+
+// This url will be added on to depending on what user wants
 var url = "http://jservice.io/api/";
+
 //getting difficultly user selected
 function changeDiff() {
     questionDiff = document.getElementById("selectDiff").value;
@@ -18,7 +35,7 @@ function changeCat() {
 }
 /*These below are getting the date for the dates 
 the user wants. They can pick both to before and after to 
-get a range*/
+get a range. It is getting them from their input in the html page*/
 function changeYearBefore() {
     yearBefore = document.getElementById("selectyearbefore").value;
     console.log(yearBefore);
@@ -44,9 +61,13 @@ function changeDayAfter() {
     console.log(dayAfter);
 }
 
-/*It needs to decide which url it will pull from then it is being
-called after the submit button to get a new question is being 
-clicked in the html page*/
+/*This function is being called when the button is
+clicked to search for a question. It needs to decide 
+which url it will pull from, this is done at the 
+start when  typeOfQuestion() is called. Then it fetches 
+the json data. Then after it calls cleanUp to make sure 
+the question is not empty and there is a question like that. It will
+then pull the question and answer then call output when ready*/
 function getQuestion() {
     typeOfQuestion()
     fetch(url)
@@ -54,44 +75,10 @@ function getQuestion() {
         return resp.json();
     })
     .then(function(data){
-        console.log(url)
-        console.log(data.length)
         cleanUp(data)
     })
-    /** typeOfQuestion()
-    fetch(url)
-    .then(function(resp) {
-        return resp.json();
-    })
-    .then(function(data){
-        if (data.length = 0) {
-            question = "There was no question that matched your critera"
-            answer = "Try making your parameters more broad, remember not every category has to be selected"
-        } else {
-            var randIndex = chooseIndex(data.length)
-            var timeOut = 0;
-            // if any are empty do process again until none of them are like this
-            /*while (data[randIndex].question == "" || data[randIndex].answer == "" || timeOut > 20) {
-                randIndex = chooseIndex(data.length)
-                timeOut++;
-            }**/
-            /*console.log(url)
-            console.log(data)
-            question = data[randIndex].question;
-            answer = data[randIndex].answer;
-            console.log(data[randIndex])
-        }
-        outputQ()
-    }) */ 
 }
 
-/*This function looks at the amount of different questions we have to
-display and then picks and index between 0 and size - 1. This is
-used to easily grab this data*/
-function chooseIndex(choices) {
-    var index = Math.floor(Math.random() * choices);
-    return index;
-}
 
 /*This function is responsible for creating the url for the api,
 first it resets the url, then it looks through what the user has given 
@@ -103,16 +90,17 @@ function typeOfQuestion() {
     reset()
     //checks if category was selcted and assigns to the url
     if (category != 0) {
-        if (!notFirst) {
-            url = url + "clues?category=" + category;
-            notFirst = true;
-        } else {
-            url = url + "&category=" + category;
-        }
+        url = url + "clues?category=" + category;
+        notFirst = true;
+        
     } 
 
     /*Deal with the dates*/
     if (yearBefore != 0) {
+        /**notFirst is checking if it was the first thing the user added
+        becasue then it should notify the rest of the categories by 
+        switching it to true. It is different if it is first than 
+        other postions, look at the top where it is defined for more detial*/
         if (!notFirst) {
             url = url + "clues?min_date=" + yearBefore;
             notFirst = true;
@@ -142,7 +130,7 @@ function typeOfQuestion() {
         } 
     } 
 
-    /*deals with the difficulty*/
+    /*deals with the difficulty in the same ways as the others*/
     if (questionDiff != 0) {
         if (!notFirst) {
             url = url + "clues?=value" + questionDiff;
@@ -153,14 +141,17 @@ function typeOfQuestion() {
     }
 
     /**If nothing is selected then it shall return
-    a random url question.*/ 
+    a random url question. notFirst knows the user
+    did not have input becuase if there was noFirst after 
+    going through all of it there was none. */ 
     if (!notFirst) {
         url =  url + "random";
     }
 }
 
 /*This function makes sure we are not building off 
-of the previous url, it is called from typeOfQuestions*/
+of the previous url, it is called from typeOfQuestions 
+and also resets notFirst*/
 function reset() {
     if (url != "http://jservice.io/api/") {
         url = "http://jservice.io/api/";
@@ -168,10 +159,25 @@ function reset() {
     }
 }
 
+/**
+ * cleanUp takes data from where we pull from the url 
+ * provided from going through typeOfQuestion() and then 
+ * processed by getQuestion() , which is what calls cleanUp.
+ * It takes the Json data given from getQuestion and first
+ * checks that it is not empty. If it is empty it will tell 
+ * user to be more broad. If it is not empty then it goes on
+ * to check that the label for answer and question is not left 
+ * out, then after it has a working question and answer it will
+ * call outputQ that will then post to the webpage for the user 
+ * to see the result
+ * @param {} data 
+ */
 function cleanUp(data) {
     if (data.length != 0) {
         var timeOut = 0;
+        //chooses out of the options randomly so it is not the same ones over again
         var randIndex = chooseIndex(data.length);
+        //males sure that the field is not empty
         while (data[randIndex].question == "" || data[randIndex].answer == "" || timeOut > 20) {
             randIndex = chooseIndex(data.length)
             timeOut++;
@@ -187,12 +193,19 @@ function cleanUp(data) {
     outputQ()
 }
 
+/*This function looks at the amount of different questions we have to
+display and then picks and index between 0 and size - 1. This is
+used to easily grab this data*/
+function chooseIndex(choices) {
+    var index = Math.floor(Math.random() * choices);
+    return index;
+}
+
 /*These are writing to the website to be display the question
-This is being called from getQuestion*/
+This is being called from cleanUP*/
 function outputQ() {
     document.getElementById("insertQuestionTitle").innerHTML = "Your Question:";
     document.getElementById("insertQuestion").innerHTML = question;
     document.getElementById("insertAnswerTitle").innerHTML = "Answer:";
     document.getElementById("insertAnswer").innerHTML = answer;
-    //document.getElementById("note").innerHTML = "Some data may be missing from API";
 }
