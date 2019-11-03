@@ -23,7 +23,7 @@ random url*/
 var notFirst = false; 
 
 // This url will be added on to depending on what user wants
-var url = "https://cors-anywhere.herokuapp.com/http://jservice.io/api/http://jservice.io/api/";
+var url = "https://cors-anywhere.herokuapp.com/http://jservice.io/api/";
 
 //getting difficultly user selected
 function changeDiff() {
@@ -207,8 +207,8 @@ function typeOfQuestion() {
 of the previous url, it is called from typeOfQuestions 
 and also resets notFirst*/
 function reset() {
-    if (url != "https://cors-anywhere.herokuapp.com/http://jservice.io/api/http://jservice.io/api/") {
-        url = "https://cors-anywhere.herokuapp.com/http://jservice.io/api/http://jservice.io/api/";
+    if (url != "https://cors-anywhere.herokuapp.com/http://jservice.io/api/") {
+        url = "https://cors-anywhere.herokuapp.com/http://jservice.io/api/";
         notFirst = false;
     }
 }
