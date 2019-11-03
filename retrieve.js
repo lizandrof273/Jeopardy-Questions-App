@@ -4,7 +4,8 @@ this*/
 var questionDiff = 0;
 var category = 0;
 var yearBefore = 0, monthBefore = 0, dayBefore = 0, 
-yearAfter = 0, monthAfter = 0, dayAfter = 0;
+yearAfter = 0, monthAfter = 0, dayAfter = 0
+year = 0, month = 0, day = 0;
 
 /**These two will later be filled with the data
  from the url with user prefernce to eventualy 
@@ -35,30 +36,37 @@ function changeCat() {
 }
 /*These below are getting the date for the dates 
 the user wants. They can pick both to before and after to 
-get a range. It is getting them from their input in the html page*/
+get a range. or now slect that exact year.
+It is getting them from their input in the html page*/
 function changeYearBefore() {
     yearBefore = document.getElementById("selectyearbefore").value;
-    console.log(yearBefore);
 }
 function changeMonthBefore() {
     monthBefore = document.getElementById("selectmonthbefore").value;
-    console.log(monthBefore);
 }
 function changeDayBefore() {
     dayBefore = document.getElementById("selectdaybefore").value;
-    console.log(dayBefore);
 }
 function changeYearAfter() {
     yearAfter = document.getElementById("selectyearafter").value;
-    console.log(yearAfter);
 }
 function changeMonthAfter() {
     monthAfter = document.getElementById("selectmonthafter").value;
-    console.log(monthAfter);
 }
 function changeDayAfter() {
     dayAfter = document.getElementById("selectdayafter").value;
-    console.log(dayAfter);
+}
+function changeYear() {
+    year = document.getElementById("selectyear").value;
+    console.log(year);
+}
+function changeMonth() {
+    month = document.getElementById("selectmonth").value;
+    console.log(month);
+}
+function changeDay() {
+    day = document.getElementById("selectday").value;
+    console.log(day);
 }
 
 /*This function is being called when the button is
@@ -95,24 +103,49 @@ function typeOfQuestion() {
         
     } 
 
-    /*Deal with the dates*/
+    /*Deal with the dates in the url*/
+
+    /*Here if the year, which is the specific date that the user is
+    looking for is filled, we should ignore id anything is filled 
+    in the after and before so we make those equal to the specific date 
+    the user wants, it does not matter if they did not fill out the 
+    month and day we can sort by just the whole year for example. Becuase 
+    we set those to year it will go through the process of setting yearBefore
+    and yearAfter with one date which will means it will be that specific date 
+    becuase 2018-2018 is still 2018. If it is not selected then it will
+    just go through normally and check if there is any in between dates*/
+    if (year != 0) {
+        yearAfter = year;
+        yearBefore = year;
+        monthAfter = month;
+        monthBefore = month; 
+        dayAfter = day;
+        dayBefore = day;
+    } 
     if (yearBefore != 0) {
-        /**notFirst is checking if it was the first thing the user added
+         /**notFirst is checking if it was the first thing the user added
         becasue then it should notify the rest of the categories by 
         switching it to true. It is different if it is first than 
         other postions, look at the top where it is defined for more detial*/
         if (!notFirst) {
-            url = url + "clues?min_date=" + yearBefore;
+            url = url + "clues?max_date=" + yearBefore;
             notFirst = true;
         } else {
-            url = url + "&min_date=" + yearBefore;
+            url = url + "&max_date=" + yearBefore;
         }
         if(monthBefore != 0) {
             url = url + "-" + monthBefore;
-            if(dayBefore != 0) {
-                url = url + "-" + dayBefore;
-            } 
         } 
+        /**else is needed bc user could have not selected these but something needs to  
+        be put into it fot it to function */
+        else {
+            url = url + "-12";
+        }
+        if(dayBefore != 0) {
+            url = url + "-" + dayBefore;
+        } else {
+            url = url + "-31";
+        }
     } 
     if (yearAfter != 0) {
         if (!notFirst) {
@@ -123,12 +156,15 @@ function typeOfQuestion() {
         }
         if(monthAfter != 0) {
             url = url + "-" + monthAfter;
-            notFirst = true;
-            if(dayAfter != 0) {
-                url = url + "-" + dayAfter;
-            } 
-        } 
-    } 
+        } else {
+            url = url + "-01";
+        }
+        if(dayAfter != 0) {
+            url = url + "-" + dayAfter;
+        } else {
+            url = url + "-01";
+        }
+    }
 
     /*deals with the difficulty in the same ways as the others*/
     if (questionDiff != 0) {
@@ -182,13 +218,15 @@ function cleanUp(data) {
             randIndex = chooseIndex(data.length)
             timeOut++;
         }
+        console.log(url);
         timeOut = 0;
         question = data[randIndex].question;
         answer = data[randIndex].answer;
         console.log(data[randIndex]);
     } else {
-        question = "There was no question that matched your critera";
-        answer = "Try making your parameters more broad, remember not every category has to be selected";
+        console.log(url);
+        question = "There was no question that matched your critera,Try making your parameters more broad, remember not every category has to be selected";
+        answer = "Note: If searching by date, make sure their was a show aired that date, or fill in less specifically, for example if you fill in the year and month it will search all the shows that month for that year instead of looking for one day specifically";
     }
     outputQ()
 }
