@@ -23,7 +23,7 @@ random url*/
 var notFirst = false; 
 
 // This url will be added on to depending on what user wants
-var url = "https://cors-anywhere.herokuapp.com/http://jservice.io/api/http://jservice.io/api/";
+var url = "jservice.io/api/http://jservice.io/api/";
 
 //getting difficultly user selected
 function changeDiff() {
