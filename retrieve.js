@@ -3,8 +3,8 @@ that it will know that the user did not choose to filter by
 this*/
 var questionDiff = 0;
 var category = 0;
-var yearBefore = 0, monthBefore = 0, dayBefore = 0, 
-yearAfter = 0, monthAfter = 0, dayAfter = 0
+var yearBefore = 0, monthBefore = 0, dayBefore = 0, yearBeforeHold = 0, monthBeforeHold = 0, dayBeforeHold = 0,
+yearAfter = 0, monthAfter= 0, dayAfter = 0, yearAfterHold = 0, monthAfterHold = 0, dayAfterHold = 0
 year = 0, month = 0, day = 0;
 
 /**These two will later be filled with the data
@@ -58,15 +58,12 @@ function changeDayAfter() {
 }
 function changeYear() {
     year = document.getElementById("selectyear").value;
-    console.log(year);
 }
 function changeMonth() {
     month = document.getElementById("selectmonth").value;
-    console.log(month);
 }
 function changeDay() {
     day = document.getElementById("selectday").value;
-    console.log(day);
 }
 
 /*This function is being called when the button is
@@ -100,7 +97,6 @@ function typeOfQuestion() {
     if (category != 0) {
         url = url + "clues?category=" + category;
         notFirst = true;
-        
     } 
 
     /*Deal with the dates in the url*/
@@ -115,6 +111,13 @@ function typeOfQuestion() {
     becuase 2018-2018 is still 2018. If it is not selected then it will
     just go through normally and check if there is any in between dates*/
     if (year != 0) {
+        // hold var are to change back to orignal, below is better explaition
+        yearAfterHold = yearAfter;
+        yearBefore = yearBefore;
+        monthBefore = monthBeforeHold;
+        monthAfter = monthAfterHold;
+        dayBefore = dayBeforeHold;
+        dayAfter = dayAfterHold;
         yearAfter = year;
         yearBefore = year;
         monthAfter = month;
@@ -165,7 +168,23 @@ function typeOfQuestion() {
             url = url + "-01";
         }
     }
-
+ 
+    /*This is needed becuase I cannot leave the before and
+    after varaibles to be the year if it is one becuase if I do
+    a bug happens where although the year is no longer there the 
+    before and after keep it and it has difffrent values then the
+    user has selected on the screen unless picked again after 
+    the fact, this bug took me awhile to find and confused me with
+    the logs changing randomly when the year had been set to any and 
+    it had never eneted to change the year again*/
+    if (year != 0) {
+        yearBefore = yearBeforeHold;
+        yearAfter = yearBeforeHold;
+        monthAfter = monthAfterHold;
+        monthBefore = monthBeforeHold;
+        dayAfter = dayAfterHold;
+        dayBefore = dayBeforeHold;
+    }
     /*deals with the difficulty in the same ways as the others*/
     if (questionDiff != 0) {
         if (!notFirst) {
@@ -175,7 +194,6 @@ function typeOfQuestion() {
             url = url + "&value=" + questionDiff;
         }
     }
-
     /**If nothing is selected then it shall return
     a random url question. notFirst knows the user
     did not have input becuase if there was noFirst after 
@@ -218,13 +236,10 @@ function cleanUp(data) {
             randIndex = chooseIndex(data.length)
             timeOut++;
         }
-        console.log(url);
         timeOut = 0;
         question = data[randIndex].question;
         answer = data[randIndex].answer;
-        console.log(data[randIndex]);
     } else {
-        console.log(url);
         question = "There was no question that matched your critera,Try making your parameters more broad, remember not every category has to be selected";
         answer = "Note: If searching by date, make sure their was a show aired that date, or fill in less specifically, for example if you fill in the year and month it will search all the shows that month for that year instead of looking for one day specifically";
     }
